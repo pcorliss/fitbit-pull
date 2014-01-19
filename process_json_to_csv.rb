@@ -9,9 +9,9 @@ def km_to_mi(km)
   km.to_f * 0.621371
 end
 
-def main
-  data = JSON.parse(File.read('phil.json'))
-  
+def main(input_file = 'data.json', output_file = 'data.csv')
+  data = JSON.parse(File.read(input_file))
+
   data_hash = {}
   data.each do |type, values|
     values.each do |date_value_hash|
@@ -25,7 +25,7 @@ def main
     end
   end
 
-  CSV.open('phil.csv', 'wb') do |csv|
+  CSV.open(output_file, 'wb') do |csv|
     csv << ['date'].concat(data_hash.first.last.keys)
     data_hash.each do |date, value_hash|
       csv << [date].concat(value_hash.values)
@@ -33,4 +33,4 @@ def main
   end
 end
 
-main
+main(*ARGV)
