@@ -68,6 +68,20 @@ module Fitgem
         data_hash.merge! time_series(series)
       end
     end
+
+    def set_debug_mode!
+      @debug = true
+    end
+
+    private
+
+    alias_method :orig_consumer, :consumer
+
+    def consumer
+      orig_consumer
+      @consumer.http.set_debug_output($stderr) if @debug && @consumer
+      @consumer
+    end
   end
 end
 
@@ -78,9 +92,8 @@ def fitbit_client(client_id, client_secret)
   })
 end
 
-def authorize_client(client, user_id)
-  client.user_id = user_id
-
+def authorize_client(client)
+  client.set_debug_mode!
   token = client.request_token
 
   puts "Navigate to the following address and enter your pin."
@@ -114,11 +127,12 @@ def write_csv(data_hash, output_file)
   end
 end
 
-def main(output_file = 'data.csv', user_id = '', client_id = '', client_secret = '')
+def main(output_file = 'data.csv', client_id = '', client_secret = '')
   client = fitbit_client(client_id, client_secret)
-  authorize_client(client, user_id)
+  authorize_client(client)
 
-  time_series_data = client.all_series
+  #time_series_data = client.all_series
+  time_series_data = client.time_series
   parsed_data = parse_data(time_series_data)
   write_csv(parsed_data, output_file)
 end
