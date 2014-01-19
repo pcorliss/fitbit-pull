@@ -132,8 +132,8 @@ def main(output_file = 'data.csv', client_id = '', client_secret = '')
   client = fitbit_client(client_id, client_secret)
   authorize_client(client)
 
-  #time_series_data = client.all_series
-  time_series_data = client.time_series
+  time_series_data = client.all_series
+  #time_series_data = client.time_series
   parsed_data = parse_data(time_series_data)
   write_csv(parsed_data, output_file)
 end
