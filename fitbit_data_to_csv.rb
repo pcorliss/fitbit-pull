@@ -94,7 +94,6 @@ def fitbit_client(client_id, client_secret)
 end
 
 def authorize_client(client)
-  client.set_debug_mode!
   token = client.request_token
 
   puts "Navigate to the following address and enter your pin."
@@ -128,8 +127,9 @@ def write_csv(data_hash, output_file)
   end
 end
 
-def main(output_file = 'data.csv', client_id = '', client_secret = '')
+def main(output_file = 'data.csv', client_id = '', client_secret = '', debug_mode = false)
   client = fitbit_client(client_id, client_secret)
+  client.set_debug_mode! if debug_mode
   authorize_client(client)
 
   time_series_data = client.all_series

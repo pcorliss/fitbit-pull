@@ -6,17 +6,10 @@ Just a quick script to convert the JSON from [Fitbit's time-series API](https://
 Getting the Data
 ----------------
 
-I found that using the following endpoint as part of the [API explorer](https://wiki.fitbit.com/display/API/API+Explorer) was the easiest for me. Then I just used the Dev Tools to pull out the response body. A full blown OAuth app would do the trick as well.
-
 ```
-GET /1/user/[Your User ID]/body/weight/date/2010-08-11/2010-08-15.json
+gem install bundler
+bundle install
+ruby fitbit_data_to_csv.rb output.csv <YOUR_CONSUMER_KEY> <YOUR_CONSUMER_SECRET> [DEBUG_MODE]
 ```
 
-Maybe I'll add in an authorization prompts or a Web GUI later on for ease of use.
-
-Usage
------
-
-```
-ruby process_json_to_csv.rb input.json output.csv
-```
+Maybe I'll add in a Web GUI later on for ease of use.
