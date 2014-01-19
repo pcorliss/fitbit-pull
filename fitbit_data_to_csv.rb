@@ -28,6 +28,7 @@ module Fitgem
       activities/steps
       activities/distance
       activities/floors
+      activities/elevation
       activities/minutesSedentary
       activities/minutesLightlyActive
       activities/minutesFairlyActive
