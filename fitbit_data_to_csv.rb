@@ -1,7 +1,7 @@
 require 'json'
 require 'csv'
-require 'fitgem'
 require 'date'
+require 'fitgem'
 
 module Fitgem
   class Client
@@ -89,10 +89,6 @@ def authorize_client(client, user_id)
   pin = STDIN.gets.chomp()
 
   client.authorize(token.token, token.secret, {:oauth_verifier => pin})
-end
-
-def read_json_file(input_file)
-  JSON.parse(File.read(input_file))
 end
 
 def parse_data(data)
