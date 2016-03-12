@@ -52,8 +52,8 @@ module Fitgem
     )
 
     def time_series(type = 'body/weight')
-      three_years_ago = (Date.today - 365*3 + 1)
-      get("/user/#{@user_id}/#{type}/date/#{three_years_ago}/#{Date.today}.json")
+      sixty_days = (Date.today - 60 + 1)
+      get("/user/#{@user_id}/#{type}/date/#{sixty_days}/#{Date.today}.json")
     end
 
     def body_series

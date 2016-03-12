@@ -3,10 +3,10 @@ GEM
   specs:
     coderay (1.1.0)
     diff-lcs (1.2.5)
-    fitgem (0.8.0)
+    fitgem (0.12.1)
       oauth
     method_source (0.8.2)
-    oauth (0.4.7)
+    oauth (0.5.1)
     pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
